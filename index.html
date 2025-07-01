@@ -61,7 +61,7 @@
     }
 
     // Hero section component
-    function Hero() {
+function Hero() {
       return (
         <section className="mt-20 grid md:grid-cols-2 h-[600px] relative">
           <div className="flex items-center px-8 md:px-16">
@@ -79,16 +79,94 @@
           </div>
         </section>
       );
-    }
+}
 
-    function App() {
-      return (
-        <div>
-          <Header />
-          <Hero />
+// Reusable white CTA button
+function WhiteCTAButton({ children }) {
+  return (
+    <button className="bg-white text-[#2A3B8F] font-bold uppercase text-sm py-3 px-5 rounded-md">
+      {children}
+    </button>
+  );
+}
+
+// Reputation card component
+function ReputationCard({ title, text, icon }) {
+  return (
+    <div className="border border-[#E6E6E6] p-6 bg-white shadow-sm flex flex-col items-start w-72 h-36">
+      <div className="text-orange-500 text-3xl mb-2">{icon}</div>
+      <div className="font-bold text-lg text-[#1A1A1A] mb-1">{title}</div>
+      <p className="text-sm text-[#7A7A7A]">{text}</p>
+    </div>
+  );
+}
+
+// Info box used in About section
+function InfoBox() {
+  return (
+    <div className="bg-[#2A3B8F] text-white p-8 rounded-lg shadow-lg md:w-72">
+      <h3 className="text-xl font-bold mb-4">About us</h3>
+      <p className="mb-6 leading-relaxed text-sm">
+        For more than 30 years we have been delivering world-class construction and we’ve built many lasting relationships along the way.
+        We’ve matured into an industry leader and trusted resource for those seeking quality, innovation and reliability when building in the U.S.
+      </p>
+      <WhiteCTAButton>More on Our History</WhiteCTAButton>
+    </div>
+  );
+}
+
+function ReputationSection() {
+  return (
+    <section className="my-20 flex flex-col items-center">
+      <h2 className="text-2xl font-bold text-[#1A1A1A] text-center mb-8">Our Reputation</h2>
+      <div className="grid md:grid-cols-3 gap-8">
+        <ReputationCard
+          title="Best Services"
+          text="Nullam senectus porttitor in eget. Eget rutrum leo interdum."
+          icon="🔧"
+        />
+        <ReputationCard
+          title="Best Teams"
+          text="Cursus semper tellus volutpat aliquet lacus."
+          icon="👥"
+        />
+        <ReputationCard
+          title="Best Designs"
+          text="Ultricies at ipsum nunc, tristique nam lectus."
+          icon="💡"
+        />
+      </div>
+    </section>
+  );
+}
+
+function AboutSection() {
+  return (
+    <section className="my-20">
+      <div className="relative md:w-3/5 mx-auto">
+        <img
+          src="https://images.unsplash.com/photo-1581091012184-5c7a1f0378f1?auto=format&fit=crop&w=800&q=60"
+          alt="Professional portrait"
+          className="w-full object-cover"
+        />
+        <div className="md:absolute md:top-8 md:right-8 mt-4 md:mt-0">
+          <InfoBox />
         </div>
-      );
-    }
+      </div>
+    </section>
+  );
+}
+
+      function App() {
+        return (
+          <div>
+            <Header />
+            <Hero />
+            <ReputationSection />
+            <AboutSection />
+          </div>
+        );
+      }
 
     ReactDOM.createRoot(document.getElementById('root')).render(<App />);
   </script>

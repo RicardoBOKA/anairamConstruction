@@ -114,6 +114,90 @@ function InfoBox() {
     </div>
   );
 }
+function SectionHeader({ children }) {
+  return (
+    <h2 className="text-3xl font-bold text-[#1A1A1A] text-center mb-12">{children}</h2>
+  );
+}
+
+function PrimaryCTAButton({ children }) {
+  return (
+    <button className="bg-[#2A3B8F] text-white font-bold uppercase py-3 px-6 rounded-md">{children}</button>
+  );
+}
+
+function ServiceCard({ title, icon, blue }) {
+  const base = "flex flex-col items-center justify-center w-56 h-40 rounded-lg shadow-sm p-6";
+  const color = blue ? "bg-[#2A3B8F] text-white" : "bg-white text-[#2A3B8F]";
+  return (
+    <div className={`${base} ${color}`}>
+      <div className="text-4xl mb-3">{icon}</div>
+      <div className="w-10 h-0.5 bg-[#DDE3F3] mb-3"></div>
+      <div className="font-bold">{title}</div>
+    </div>
+  );
+}
+
+function ServicesSection() {
+  const services = [
+    { title: "Construction", icon: "🏗️" },
+    { title: "Renovation", icon: "🏠" },
+    { title: "Consultation", icon: "💼" },
+    { title: "Repair Services", icon: "🛠️" },
+    { title: "Architecture", icon: "📐" },
+    { title: "Electric", icon: "💡" },
+  ];
+  return (
+    <section className="my-20">
+      <SectionHeader>Services</SectionHeader>
+      <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3 justify-items-center">
+        {services.map((s, i) => (
+          <ServiceCard key={s.title} title={s.title} icon={s.icon} blue={i % 2 === 1} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function StatCard({ number, label, icon }) {
+  return (
+    <div className="bg-white shadow-md rounded-md p-4 flex items-center relative">
+      <div className="absolute left-0 top-2 bottom-2 w-1 bg-[#FF875A]"></div>
+      <div className="text-2xl mr-3">{icon}</div>
+      <div className="ml-2">
+        <div className="text-xl font-bold text-black">{number}</div>
+        <div className="text-sm text-gray-700">{label}</div>
+      </div>
+    </div>
+  );
+}
+
+function ExperienceSection() {
+  const stats = [
+    { number: 123, label: "Projects Completed", icon: "📄" },
+    { number: 84, label: "Happy Clients", icon: "🤝" },
+    { number: 37, label: "Awards Win", icon: "🏆" },
+    { number: 30, label: "Years in Business", icon: "📊" },
+  ];
+  return (
+    <section className="my-20 md:grid md:grid-cols-2 gap-8 items-center">
+      <div className="flex flex-wrap justify-center md:justify-start">
+        {stats.map((s, i) => (
+          <div key={s.label} className={`w-40 m-3 ${i % 2 === 1 ? 'mt-10' : ''}`}>
+            <StatCard number={s.number} label={s.label} icon={s.icon} />
+          </div>
+        ))}
+      </div>
+      <div className="mt-8 md:mt-0 px-4 flex flex-col items-start">
+        <h2 className="text-3xl font-bold text-[#2A3B8F] mb-4">30 Years Experience</h2>
+        <p className="text-[#4F4F4F] mb-6 leading-relaxed text-sm md:text-base">
+          Our company has been the leading provided construction services to clients throughout the USA since 1988.
+        </p>
+        <PrimaryCTAButton>Contact Us</PrimaryCTAButton>
+      </div>
+    </section>
+  );
+}
 
 function ReputationSection() {
   return (
@@ -164,6 +248,8 @@ function AboutSection() {
             <Hero />
             <ReputationSection />
             <AboutSection />
+            <ServicesSection />
+            <ExperienceSection />
           </div>
         );
       }

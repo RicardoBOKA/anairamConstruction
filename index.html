@@ -90,6 +90,149 @@ function WhiteCTAButton({ children }) {
   );
 }
 
+function FormInput({ label, required, type = 'text' }) {
+  return (
+    <div className="flex flex-col">
+      <label className="text-sm font-medium text-[#4F4F4F] mb-1">
+        {label}
+        {required && (
+          <span className="text-[#FF5A5F] text-xs align-super ml-1">*</span>
+        )}
+      </label>
+      <input
+        type={type}
+        required={required}
+        placeholder={label}
+        className="h-11 px-3 border border-[#DDDDDD] rounded-md bg-white placeholder-gray-400 focus:outline-none focus:border-[#2A3B8F]"
+      />
+    </div>
+  );
+}
+
+function FormTextarea({ label, required }) {
+  return (
+    <div className="flex flex-col">
+      <label className="text-sm font-medium text-[#4F4F4F] mb-1">
+        {label}
+        {required && (
+          <span className="text-[#FF5A5F] text-xs align-super ml-1">*</span>
+        )}
+      </label>
+      <textarea
+        rows="4"
+        required={required}
+        placeholder={label}
+        className="w-full px-3 py-2 border border-[#DDDDDD] rounded-md bg-white placeholder-gray-400 focus:outline-none focus:border-[#2A3B8F]"
+      ></textarea>
+    </div>
+  );
+}
+
+function FormButton({ children }) {
+  return (
+    <button className="bg-[#2A3B8F] text-white font-bold px-7 py-3 rounded-md">
+      {children}
+    </button>
+  );
+}
+
+function SocialIconButton({ label }) {
+  return (
+    <a
+      href="#"
+      aria-label={label}
+      className="w-8 h-8 flex items-center justify-center bg-gray-700 rounded-full text-white text-sm"
+    >
+      {label[0]}
+    </a>
+  );
+}
+
+function NewsletterForm() {
+  return (
+    <form className="flex w-full max-w-xs">
+      <input
+        type="email"
+        placeholder="Your email here"
+        className="flex-1 h-10 px-3 border border-[#DDDDDD] rounded-l-md placeholder-gray-400 focus:outline-none focus:border-[#2A3B8F]"
+      />
+      <button
+        type="submit"
+        className="bg-[#FF875A] text-white px-4 rounded-r-md text-sm"
+      >
+        Subscribe
+      </button>
+    </form>
+  );
+}
+
+function FooterInfoColumn({ title, children }) {
+  return (
+    <div className="mb-6">
+      <h3 className="text-[#2A3B8F] font-bold uppercase mb-2 text-sm">{title}</h3>
+      <div className="text-black text-sm leading-relaxed">{children}</div>
+    </div>
+  );
+}
+
+function ContactSection() {
+  return (
+    <section className="px-8 py-20">
+      <h2 className="text-3xl font-bold text-center text-[#1A1A1A] mb-2">
+        What can us do for you?
+      </h2>
+      <p className="text-center text-[#4F4F4F] mb-8 text-sm">
+        We are ready to work on a project of any complexity…
+      </p>
+      <form className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+        <FormInput label="Your Name" required />
+        <FormInput label="Email" type="email" required />
+        <FormInput label="Reason for Contacting" required />
+        <FormInput label="Phone" />
+        <div className="md:col-span-2">
+          <FormTextarea label="Message" />
+        </div>
+      </form>
+      <div className="max-w-3xl mx-auto flex items-center justify-between mt-4">
+        <span className="text-xs text-[#4F4F4F]">* indicates a required field</span>
+        <FormButton>Submit</FormButton>
+      </div>
+    </section>
+  );
+}
+
+function FooterSection() {
+  return (
+    <footer className="bg-[#F5F5F5]">
+      <div className="flex flex-wrap justify-between gap-8 px-8 py-10">
+        <div className="w-full md:w-1/3">
+          <FooterInfoColumn title="ADDRESS">6391 Elgin St. Celina, Delaware 10299</FooterInfoColumn>
+          <FooterInfoColumn title="PHONE">+84 1102 2703</FooterInfoColumn>
+          <FooterInfoColumn title="EMAIL">hello@thebox.com</FooterInfoColumn>
+          <div className="flex items-center mt-4 text-[#2A3B8F] font-bold">
+            <span className="text-2xl mr-2">📦</span> TheBox
+          </div>
+        </div>
+        <div className="w-full md:w-1/3">
+          <h3 className="text-[#2A3B8F] font-bold uppercase mb-2 text-sm">NEWSLETTER</h3>
+          <NewsletterForm />
+        </div>
+        <div className="w-full md:w-1/3">
+          <h3 className="text-[#2A3B8F] font-bold uppercase mb-2 text-sm">SOCIAL</h3>
+          <div className="flex space-x-3 md:justify-start justify-center">
+            <SocialIconButton label="Facebook" />
+            <SocialIconButton label="LinkedIn" />
+            <SocialIconButton label="Twitter" />
+          </div>
+        </div>
+      </div>
+      <div className="bg-[#2A3B8F] text-white text-center text-xs py-4">
+        TheBox Company © 2022. All Rights Reserved
+      </div>
+    </footer>
+  );
+}
+
 // Reputation card component
 function ReputationCard({ title, text, icon }) {
   return (
@@ -409,6 +552,8 @@ function ProjectsSection() {
             <ExperienceSection />
             <ConsultationBanner />
             <ProjectsSection />
+            <ContactSection />
+            <FooterSection />
           </div>
         );
       }
